@@ -55,6 +55,14 @@
             'avatar_id',
             'bio',
             'business_name',
+            'follower_count',
+            'following_count',
+            'post_count',
+            'is_business',
+            'instagram_id',
+            'is_private',
+            'country_code',
+            'role_id',
         ];
 
         /**

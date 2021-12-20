@@ -9,6 +9,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers\ImportController;
+
 Route::get('/intro','\App\Http\Controllers\LandingpageController@index');
 Route::get('/', '\App\Http\Controllers\HomeController@index')->name('home');
 Route::post('/install/check-db', '\App\Http\Controllers\HomeController@checkConnectDatabase');
@@ -35,3 +37,4 @@ Route::get('social-callback/{provider}', '\App\Http\Controllers\Auth\LoginContro
 
 // Logs
 Route::get('admin/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['auth', 'dashboard','system_log_view']);
+Route::post('import', [ImportController::class, 'import'])->name('import');

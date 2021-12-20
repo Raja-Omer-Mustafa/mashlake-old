@@ -1,21 +1,34 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="dashboard-page">
-            <h4 class="welcome-title text-uppercase">{{__('Welcome :name!',['name'=>Auth::user()->nameOrEmail])}}</h4>
-        </div>
-        <br>
+<div class="container-fluid">
+    <div class="dashboard-page">
+
+        <h4 class="welcome-title text-uppercase">{{__('Welcome :name!',['name'=>Auth::user()->nameOrEmail])}}</h4>
     </div>
+    <br>
+    <div class="container">
+        <div class="card bg-light mt-3">
+            <div class="card-body">
+                <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file" class="form-control">
+                    <br>
+                    <button class="btn btn-success">Import User Data</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script.body')
-    <script src="{{url('libs/chart_js/Chart.min.js')}}"></script>
-    <script src="{{url('libs/daterange/moment.min.js')}}"></script>
-    <script src="{{url('libs/daterange/daterangepicker.min.js?_ver='.config('app.version'))}}"></script>
-    <link rel="stylesheet" href="{{url('libs/daterange/daterangepicker.css')}}"/>
-    <script>
-        var ctx = document.getElementById('earning_chart').getContext('2d');
+<script src="{{url('libs/chart_js/Chart.min.js')}}"></script>
+<script src="{{url('libs/daterange/moment.min.js')}}"></script>
+<script src="{{url('libs/daterange/daterangepicker.min.js?_ver='.config('app.version'))}}"></script>
+<link rel="stylesheet" href="{{url('libs/daterange/daterangepicker.css')}}" />
+<script>
+    var ctx = document.getElementById('earning_chart').getContext('2d');
         window.myMixedChart = new Chart(ctx, {
             type: 'bar',
             data: earning_chart_data,
@@ -102,5 +115,5 @@
             })
         });
         cb(start, end);
-    </script>
+</script>
 @endsection

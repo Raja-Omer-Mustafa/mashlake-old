@@ -11,7 +11,7 @@ use Modules\User\Helpers\PermissionHelper;
 
 class Role extends BaseModel
 {
-
+     const CANDIDATE_ROLE = 2;
     protected $table = 'core_roles';
 
     protected $fillable = [

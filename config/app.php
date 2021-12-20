@@ -184,6 +184,7 @@ return [
         Plugins\ServiceProvider::class,
         Custom\ServiceProvider::class,
         App\Providers\AdminRouteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         Propaganistas\LaravelPhone\PhoneServiceProvider::class,
 
 
@@ -238,6 +239,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
 
     ],
