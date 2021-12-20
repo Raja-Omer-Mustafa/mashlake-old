@@ -1,0 +1,30 @@
+Version 1.1.0 - 18 November 2021
+
+     [ADD]
+          + Update the Landing Page mode
+          + Update Job package 
+          + Add 5 payment gateways: Paypal, Stripe, Flutter wave, Razorpay, Two checkout
+          + Add new Homepage layout 4-5-6
+          + Add new Job list Layout 2-7
+          + Add new Job detail layout 3
+          + Allow application job form to upload files directly from the Apply form
+          + Add new Employers list layout 2-3
+          + Add new Employers detail layout 3
+          + Add new Candidates list layout 2-3
+          + Add new Candidate detail layout 3
+          + Add GIGs module and related features
+
+
+     [FIXED]
+          + On mobile when you click on menu the whole header gets hidden
+          + Candidate role cant apply job
+          + Update form search on banner
+          
+
+Version 1.0.1 –  25 September 2021
+    
+[HOT FIX]
+ - Fixed missing 'meta' column issue
+ - Fixed the candidate role can change role to other roles
+
+V1.0.0 - 24 September 2021 First Release
