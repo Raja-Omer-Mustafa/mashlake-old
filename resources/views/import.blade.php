@@ -4,9 +4,24 @@
 <div class="container-fluid">
     <div class="dashboard-page">
 
-        <h4 class="welcome-title text-uppercase">{{__('Welcome :name!',['name'=>Auth::user()->nameOrEmail])}}</h4>
+       <h1 class="title-bar">{{__('Import Candidate')}}</h1>
     </div>
     <br>
+    @include('admin.message')
+   <div class="filter-div d-flex justify-content-between ">
+            <div class="col-left">
+                    <form method="post" action="{{ route('import') }}" class="" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="custom-file mb-3">
+                            <input type="file" name="file" class="custom-file-input" required>
+                            <label class="custom-file-label" for="customFile">{{__("Choose file")}}</label>
+                        </div>
+                        <button  class="btn-info btn btn-icon dungdt-apply-form-btn" type="submit">{{__('Import')}}</button>
+                    </form>
+            </div>
+        </div>
+
+    
 </div>
 @endsection
 

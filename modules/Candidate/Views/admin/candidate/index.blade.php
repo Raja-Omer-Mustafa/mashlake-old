@@ -6,7 +6,10 @@
             <h1 class="title-bar">{{__("All candidate")}}</h1>
             <div class="title-actions">
                 <a href="{{route('user.admin.create', ['candidate_create' => 1])}}" class="btn btn-primary">{{__("Add new Candidate")}}</a>
+
+                <a href="{{route('import.View')}}" class="btn btn-info">Import Candidates</a>
             </div>
+
         </div>
         @include('admin.message')
         <div class="filter-div d-flex justify-content-between ">

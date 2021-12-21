@@ -38,3 +38,4 @@ Route::get('social-callback/{provider}', '\App\Http\Controllers\Auth\LoginContro
 // Logs
 Route::get('admin/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware(['auth', 'dashboard','system_log_view']);
 Route::post('import', [ImportController::class, 'import'])->name('import');
+Route::get('importView', [ImportController::class, 'importExportView'])->name('import.View');

@@ -108,7 +108,7 @@
     </div>
     <div class="main-content">
         @include('Layout::admin.parts.bc')
-        @include('flash-message')
+        
         @yield('content')
         <footer class="main-footer">
             <div class="container-fluid">
