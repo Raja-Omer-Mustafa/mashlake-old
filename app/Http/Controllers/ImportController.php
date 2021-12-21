@@ -27,7 +27,14 @@ class ImportController extends Controller
         $request->validate([
             'file' => 'max:10240|required|mimes:csv,xlsx',
         ],$messages);
-        Excel::import(new CandidateImport,request()->file('file'));   
+        
+        try{
+            Excel::import(new CandidateImport,request()->file('file')); 
+        }catch ( ValidationException $e ){
+
+        return response()->json(['success'=>'errorList','message'=> $e->errors()]);
+        }
+          
         return redirect()->route('import.View')->with('success','Candidates import successfully!');
     }
 }

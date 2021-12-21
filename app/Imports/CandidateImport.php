@@ -18,7 +18,7 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
-class CandidateImport implements ToCollection, WithStartRow
+class CandidateImport implements ToCollection, WithStartRow, WithValidation
 {
     use RemembersRowNumber;
     use Importable;
@@ -26,36 +26,9 @@ class CandidateImport implements ToCollection, WithStartRow
     * @param Collection $collection
     */
     public function collection(Collection $rows)
-    {
-        // $currentRowNumber = $this->getRowNumber();
-        // $messages = [
-        //     '*.9.required'      => "Row: $currentRowNumber Email is required.",
-        //     '*.9.email'      => "Row: $currentRowNumber must be Email",
-        //     '*.9.unique'      => "Row: $currentRowNumber Email Already Exists",
-        // ];
-        // $data = $rows->slice(1)->toArray();
-        // Validator::make($data, [
-        //      '*.9' => 'required|email|unique:users,email',
-        // ], $messages)->validate();
-        // dd($rows->toArray());
-
-
-    
-
-       
+    {       
         foreach ($rows as $rowNumber => $row)
         {
-            $rowNumber += 1;
-            $messages = [
-                '9.required' => "Row: $rowNumber Email is required.",
-                '9.email' => "Row: $rowNumber must be Email",
-                '9.unique' => "Row: $rowNumber Email Already Exists"
-            ];
-            $validator = Validator::make($row->toArray(), [
-                '9' => 'required|email|unique:users,email',
-            ],$messages);
-
-            $validator->validate();
             $user = User::create([
                 'instagram_id' => $row[0],
                 'first_name' => $row[2],
@@ -70,11 +43,10 @@ class CandidateImport implements ToCollection, WithStartRow
                 'city' => $row[13],
                 'address' => $row[14],
                 'is_private' => $row[15],
-                'role_id'  => 3,
                 'password' => '$2y$10$7bgwSeheuZXfVxD7sLzmb.bZcUtzuEkTV4RYinisvUl1cohlsAmVe',
 
             ]);
-
+            $user->assignRole('candidate');
 
             Candidate::create([
 
@@ -96,4 +68,19 @@ class CandidateImport implements ToCollection, WithStartRow
     {
         return 2;
     }
+
+    public function rules(): array
+    {
+        return [
+            '9' => [Rule::unique('users', 'email'), 'required', 'email']
+        ];
+    }
+
+    // public function customValidationMessages()
+    // {
+    //     return [
+    //         '0.*' => 'Custom message for :attribute.',
+    //         '4.numeric' => ':attribute should be numeric.',
+    //     ];
+    // }
 }
