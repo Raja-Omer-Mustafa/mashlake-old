@@ -13,6 +13,13 @@ class MediaFile extends BaseModel
 {
     use SoftDeletes;
     protected $table = 'media_files';
+     protected $fillable = [
+        'file_path',
+        'file_name',
+        'file_type',
+        'file_extension',
+        'create_user',
+     ];
 
     public static function findMediaByName($name)
     {
