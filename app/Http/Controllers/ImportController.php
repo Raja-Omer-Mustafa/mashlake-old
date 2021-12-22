@@ -22,10 +22,9 @@ class ImportController extends Controller
     {
         $messages = [
             'file.required'      => 'The  csv file is required.',
-            'file.mimes'      => 'file type is not csv.',
         ];
         $request->validate([
-            'file' => 'max:10240|required|mimes:csv,xlsx',
+            'file' => 'required|mimes:csv,txt',
         ],$messages);
         
         try{
