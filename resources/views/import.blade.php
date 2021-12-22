@@ -13,7 +13,7 @@
                     <form method="post" action="{{ route('import') }}" class="" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="custom-file mb-3">
-                            <input type="file" name="file" class="custom-file-input" required>
+                            <input type="file" name="file" class="custom-file-input" id="customFileImport" required>
                             <label class="custom-file-label" for="customFile">{{__("Choose file")}}</label>
                         </div>
                         <button  class="btn-info btn btn-icon dungdt-apply-form-btn" type="submit">{{__('Import')}}</button>
@@ -119,4 +119,12 @@
         });
         cb(start, end);
 </script>
+  <script>
+        $('#customFileImport').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
 @endsection
