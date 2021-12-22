@@ -54,6 +54,7 @@ class CandidateImport implements ToCollection, WithStartRow, WithValidation
                 'city' => $row[13],
                 'address' => $row[14],
                 'is_private' => $row[15],
+                'is_business' => $row[16],
                 'password' => '$2y$10$7bgwSeheuZXfVxD7sLzmb.bZcUtzuEkTV4RYinisvUl1cohlsAmVe'
 
             ]);
@@ -113,10 +114,18 @@ class CandidateImport implements ToCollection, WithStartRow, WithValidation
             $user->save();
 
             Candidate::create([
-                'social_media' => $row[1],
-                'website' => $row[16],
+                'social_media' => [
+                    "skype" => null,
+                    "facebook" => null,
+                    "twitter" => null,
+                    "instagram" => $row[1],
+                    "pinterest" => null,
+                    "dribbble" => null,
+                    "google" => null,
+                    "linkedin" => null
+                ],
+                'website' => $row[17],
             ]);
-
             // UserMeta::create([
             //     'user_id' => $user->id,
             //     'val' => $row[3],
