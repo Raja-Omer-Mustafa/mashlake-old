@@ -24,7 +24,7 @@ class ImportController extends Controller
             'file.required'      => 'The  csv file is required.',
         ];
         $request->validate([
-            'file' => 'required|mimes:csv,txt',
+            'file' => 'required|mimes:csv,txt,xlx,xls',
         ],$messages);
         
         try{
