@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('title','Candidate')
 @section('content')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <div class="container-fluid">
         <div class="d-flex justify-content-between mb20">
             <h1 class="title-bar">{{__("All candidate")}}</h1>
@@ -84,6 +85,11 @@
                                             <td>
                                                 <a href="{{route('user.admin.detail',['id'=>$row->id])}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> {{__('Edit')}}</a>
                                             </td>
+                                            <td>
+                                            <button type="button" class="btn btn-primary btn-sm assign-job-btn" data-id="{{ $row->id }}" data-target="#exampleModal" data-toggle="modal" >
+                                                Assign jobs
+                                                </button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -101,4 +107,51 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Assign Jobs</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+                                    
+      <div class="modal-body">
+        <form method="post" id="job-Form" action="{{route('assign.Job')}}" >
+            @csrf
+            <input type="hidden" id="candidate-id" name="candidate-id" value="">
+            <div class="form-group">
+                <select name="job" class="form-control">
+                    @foreach ($candidateJobs as $candidateJob)
+                        <option value="{{ $candidateJob->id }}">
+                            {{ $candidateJob->title }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Message</label>
+             <textarea class="form-control" name="message" id="exampleFormControlTextarea1"rows="3"></textarea>
+         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name="submit" class="btn btn-primary">Assign Job</button>
+      </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+    $('.assign-job-btn').click(function(){
+        var id = $(this).data('id');
+        $('#candidate-id').val(id);
+    });
+});
+</script>
 @endsection
+

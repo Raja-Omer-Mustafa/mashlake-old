@@ -11,7 +11,7 @@ use Modules\Language\Models\Language;
 use Modules\Candidate\Models\Category;
 use Modules\Candidate\Models\Candidate;
 use Modules\User\Models\User;
-
+use Modules\Job\Models\Job;
 class CandidateController extends AdminController
 {
     public function __construct()
@@ -22,6 +22,7 @@ class CandidateController extends AdminController
 
     public function index(Request $request)
     {
+        $candidateJobs =Job::all();
         $this->checkPermission('candidate_manage_others');
         $username = $request->query('s');
         $cate_id = $request->query('cate_id');
@@ -63,7 +64,7 @@ class CandidateController extends AdminController
             "locale"=>\App::getLocale(),
             'page_title'=>__("Candidate Management")
         ];
-        return view('Candidate::admin.candidate.index', $data);
+        return view('Candidate::admin.candidate.index', $data,compact('candidateJobs'));
     }
 
     public function bulkEdit(Request $request)

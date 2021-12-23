@@ -14,7 +14,8 @@ class JobCandidate extends BaseModel
         'candidate_id',
         'company_id',
         'cv_id',
-        'message'
+        'message',
+        'status',
     ];
 
     public function jobInfo()
