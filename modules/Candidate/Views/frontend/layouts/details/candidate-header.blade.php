@@ -8,7 +8,7 @@
                     <h4 class="name"><a href="#">{{$row->user->getDisplayName()}}</a></h4>
                     <ul class="candidate-info">
                         <li class="designation">{{$row->title}}</li>
-                        @if($row->city || $row->country)
+                        {{-- @if($row->city || $row->country)
                             <li><span class="icon flaticon-map-locator"></span> {{$row->city}}, {{$row->country}}</li>
                         @endif
                         @if($row->expected_salary)
@@ -16,7 +16,7 @@
                         @endif
                         @if($row->user->created_at)
                             <li><span class="icon flaticon-clock"></span> {{__('Member Since')}} {{date('M d, Y', strtotime($row->user->created_at))}}</li>
-                        @endif
+                        @endif --}}
                     </ul>
                     @php
                         $categories = $row->getCategory();

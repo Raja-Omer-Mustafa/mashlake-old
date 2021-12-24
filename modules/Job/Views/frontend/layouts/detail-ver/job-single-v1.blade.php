@@ -22,29 +22,28 @@
                     <div class="job-detail">
                         {!! @clean($row->content) !!}
                     </div>
-
+                    <div class="sidebar-widget company-widget">
+                        <h4 class="widget-title">{{ __("All Applicants") }}</h4>
+                        @foreach($jobCandidates as $candidate)
+                            <div class="widget-content mt-4">
+                                <div class="company-title">
+                                    <div class="company-logo">
+                                        <img src="{{ $candidate->userInfo->getAvatarUrl() }}" alt="{{ $candidate->userInfo->name }}">
+                                    </div>
+                                    <h5 class="company-name">{{ $candidate->userInfo->name }}</h5>
+                                    <span>{{ $candidate->userInfo->email }}</span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                     @include("Job::frontend.layouts.details.social-share")
 
                     @include("Job::frontend.layouts.details.related")
 
                 </div>
 
-                <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
+                {{-- <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
                     <aside class="sidebar">
-                        <div class="sidebar-widget company-widget">
-                            <h4 class="widget-title">{{ __("All Applicants") }}</h4>
-                            @foreach($jobCandidates as $candidate)
-                                <div class="widget-content mt-4">
-                                    <div class="company-title">
-                                        <div class="company-logo">
-                                            <img src="{{ $candidate->userInfo->getAvatarUrl() }}" alt="{{ $candidate->userInfo->name }}">
-                                        </div>
-                                        <h5 class="company-name">{{ $candidate->userInfo->name }}</h5>
-                                        <span>{{ $candidate->userInfo->email }}</span>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
                         <div class="sidebar-widget">
 
                             @include("Job::frontend.layouts.details.overview")
@@ -61,7 +60,7 @@
                         @include("Job::frontend.layouts.details.company")
 
                     </aside>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@
         @if($row->category)
             <li><span class="icon flaticon-briefcase"></span> {{ $row->category->name }}</li>
         @endif
-        @if($row->location)
+        {{-- @if($row->location)
             <li><span class="icon flaticon-map-locator"></span> {{ $row->location->name }}</li>
         @endif
         @if($row->created_at)
@@ -17,7 +17,7 @@
         @endif
         @if($row->salary_min)
             <li><span class="icon flaticon-money"></span> {{ $row->getSalary() }}</li>
-        @endif
+        @endif --}}
     </ul>
     <ul class="job-other-info">
         @if($row->jobType)
