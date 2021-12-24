@@ -63,12 +63,16 @@ class JobController extends Controller{
                 ->first();
             if($job_candidate) $applied = true;
         }
+        $jobCandidates = JobCandidate::with(['userInfo'])
+                ->where('job_id', $row->id)
+                ->get();
         $data = [
             'row' => $row,
             'translation' => $translation,
             'job_related' => $job_related,
             'candidate' => $candidate,
             'applied' => $applied,
+            'jobCandidates' => $jobCandidates,
             'disable_header_shadow' => true,
             'seo_meta' => $row->getSeoMetaWithTranslation(app()->getLocale(), $translation)
         ];

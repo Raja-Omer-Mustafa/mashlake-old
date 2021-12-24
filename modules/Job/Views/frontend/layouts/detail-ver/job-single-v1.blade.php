@@ -31,6 +31,22 @@
 
                 <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
                     <aside class="sidebar">
+                        <div class="sidebar-widget company-widget">
+                            <h4 class="widget-title">{{ __("All Applicants") }}</h4>
+                            @foreach($jobCandidates as $candidate)
+                                <div class="widget-content mt-4">
+                                    <div class="company-title">
+                                        @if(!empty($candidate->userInfo->avatar_id))
+                                            <div class="company-logo">
+                                                <img src="{{ $candidate->userInfo->getAvatarUrl() }}" alt="{{ $candidate->userInfo->name }}">
+                                            </div>
+                                        @endif
+                                        <h5 class="company-name">{{ $candidate->userInfo->name }}</h5>
+                                        <span>{{ $candidate->userInfo->email }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                         <div class="sidebar-widget">
 
                             @include("Job::frontend.layouts.details.overview")

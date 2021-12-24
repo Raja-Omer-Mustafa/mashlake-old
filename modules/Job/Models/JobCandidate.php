@@ -5,6 +5,7 @@ use App\BaseModel;
 use Modules\Candidate\Models\Candidate;
 use Modules\Candidate\Models\CandidateCvs;
 use Modules\Company\Models\Company;
+use Modules\User\Models\User;
 
 class JobCandidate extends BaseModel
 {
@@ -26,6 +27,11 @@ class JobCandidate extends BaseModel
     public function candidateInfo()
     {
         return $this->hasOne(Candidate::class, "id", 'candidate_id');
+    }
+
+    public function userInfo()
+    {
+        return $this->hasOne(User::class, "id", 'candidate_id');
     }
 
     public function cvInfo()
