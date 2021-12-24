@@ -36,11 +36,9 @@
                             @foreach($jobCandidates as $candidate)
                                 <div class="widget-content mt-4">
                                     <div class="company-title">
-                                        @if(!empty($candidate->userInfo->avatar_id))
-                                            <div class="company-logo">
-                                                <img src="{{ $candidate->userInfo->getAvatarUrl() }}" alt="{{ $candidate->userInfo->name }}">
-                                            </div>
-                                        @endif
+                                        <div class="company-logo">
+                                            <img src="{{ $candidate->userInfo->getAvatarUrl() }}" alt="{{ $candidate->userInfo->name }}">
+                                        </div>
                                         <h5 class="company-name">{{ $candidate->userInfo->name }}</h5>
                                         <span>{{ $candidate->userInfo->email }}</span>
                                     </div>
