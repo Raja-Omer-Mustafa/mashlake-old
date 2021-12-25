@@ -57,7 +57,7 @@ class CandidateController extends FrontendController
 
     public function detail(Request $request, $slug)
     {
-        $row = Candidate::with([ 'skills', 'categories', 'user'])->where('slug', $slug)->first();
+        $row = Candidate::with(['jobCandidate.jobInfo', 'skills', 'categories', 'user'])->where('slug', $slug)->first();
         if (empty($row)) {
             return redirect('/');
         }else{

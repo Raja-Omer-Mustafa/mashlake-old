@@ -4,6 +4,59 @@
         {!! clean($row->user->bio) !!}
         <!-- Resume / Education -->
 
+        <div class="related-jobs">
+            @if($row->jobCandidate->count() > 0)
+            <div class="title-box">
+                <h3>{{ __("Jobs Applied") }}</h3>
+            </div>
+            @endif
+            @foreach($row->jobCandidate as $jc)
+                @php
+                    $data = $jc->jobInfo;
+                @endphp
+                <div class="job-block">
+                    <div class="inner-box">
+                        <div class="content">
+                            @if($company_logo = $data->getThumbnailUrl())
+                                <span class="company-logo">
+                                    <img src="{{ $company_logo }}" alt="{{ $data->company ? $data->company->name : 'company' }}">
+                                </span>
+                            @endif
+                            <h4>
+                                <a href="{{ $data->getDetailUrl() }}">{{ $translation->title }}</a>
+                            </h4>
+                            <ul class="job-info">
+                                @if($data->category)
+                                    <li><span class="icon flaticon-briefcase"></span> {{ $data->category->name }}</li>
+                                @endif
+                                @if($data->location)
+                                    <li><span class="icon flaticon-map-locator"></span> {{ $data->location->name }}</li>
+                                @endif
+                                @if($data->created_at)
+                                    <li><span class="icon flaticon-clock-3"></span> {{ $data->timeAgo() }}</li>
+                                @endif
+                                @if($data->salary_min && $data->salary_max)
+                                    <li><span class="icon flaticon-money"></span> {{ $data->getSalary(false) }}</li>
+                                @endif
+                            </ul>
+                            <ul class="job-other-info">
+                                @if($data->jobType)
+                                    <li class="time">{{ $data->jobType->name }}</li>
+                                @endif
+                                @if($data->is_featured)
+                                    <li class="privacy">{{ __("Featured") }}</li>
+                                @endif
+                                @if($data->is_urgent)
+                                    <li class="required">{{ __("Urgent") }}</li>
+                                @endif
+                            </ul>
+                                <button class="bookmark-btn @if($data->wishlist) active @endif service-wishlist" data-id="{{$data->id}}" data-type="{{$data->type}}"><span class="flaticon-bookmark"></span></button>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
         @if(!empty($row->education))
             <div class="resume-outer">
                 <div class="upper-title">

@@ -9,6 +9,7 @@ use Modules\Core\Models\SEO;
 use Modules\Location\Models\Location;
 use Modules\Media\Helpers\FileHelper;
 use Modules\Skill\Models\Skill;
+use Modules\Job\Models\JobCandidate;
 
 class Candidate extends BaseModel
 {
@@ -105,6 +106,11 @@ class Candidate extends BaseModel
 
     public function user(){
         return $this->belongsTo(User::class,'id','id');
+    }
+
+    public function jobCandidate()
+    {
+        return $this->hasMany(JobCandidate::class, "candidate_id", 'id');
     }
 
     public function getCategory()
